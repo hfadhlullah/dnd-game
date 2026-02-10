@@ -1,9 +1,9 @@
-import * as ClerkModule from '@clerk/clerk-js';
-import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
+import { Clerk } from '@clerk/clerk-js';
+import { env } from '$env/dynamic/public';
 
-const Clerk = (ClerkModule as any).Clerk || (ClerkModule as any).default;
-
-export const clerk = typeof window !== 'undefined' && Clerk ? new Clerk(PUBLIC_CLERK_PUBLISHABLE_KEY) : null;
+export const clerk = typeof window !== 'undefined' && env.PUBLIC_CLERK_PUBLISHABLE_KEY 
+  ? new Clerk(env.PUBLIC_CLERK_PUBLISHABLE_KEY) 
+  : null;
 
 export async function initClerk() {
   if (!clerk) return;
