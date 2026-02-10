@@ -119,6 +119,15 @@
     {#if game.phase === 'ENCOUNTER' || game.phase === 'ROLLING'}
       <!-- Encounter Text -->
       <div class="mb-10 text-center" class:opacity-50={game.phase === 'ROLLING'}>
+        {#if game.currentEncounter?.image}
+          <div class="mb-6 flex justify-center">
+            <img 
+              src={game.currentEncounter.image} 
+              alt="Encounter" 
+              class="rounded-xl border-4 border-parchment/20 shadow-lg max-h-64 object-cover"
+            />
+          </div>
+        {/if}
         <p class="text-parchment text-lg md:text-xl leading-relaxed font-sans">
           {game.currentEncounter?.text}
         </p>
@@ -147,6 +156,7 @@
             </div>
           </button>
         {/each}
+
       </div>
     {:else if game.phase === 'RESULT'}
       <!-- Result Display -->
