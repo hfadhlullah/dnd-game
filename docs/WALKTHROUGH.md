@@ -8,7 +8,11 @@ A fully playable 60-second dungeon crawler PWA with:
 - **Game Loop** (`/dungeon`) - 5 encounters, D20 rolls, HP tracking, stat progression
 - **Result Screen** (`/result`) - Rarity-based endings with share functionality
 - **Medieval Icons Integration** - Replaced emojis with custom pixel-art icons for stats, HP, and UI elements.
+- **Backend Persistence (Convex)** - All game runs (victory or death) are now saved to a persistent database.
+- **Global Leaderboard** - The "Hall of Fate" displays top runs from around the world.
+- **Clerk Authentication** - Integrated Guest-first authentication, allowing users to sign in and save their history.
 - **20 Satirical Encounters** - Medieval humor meets modern comedy
+
 
 
 ### ✅ Technical Stack

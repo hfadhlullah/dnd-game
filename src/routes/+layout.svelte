@@ -1,14 +1,16 @@
 <script lang="ts">
   import '../app.css';
   import { onMount } from 'svelte';
-  import { initUser } from '$lib/user.svelte';
+  import { initUser, syncWithClerk } from '$lib/user.svelte';
+  import { initClerk } from '$lib/clerk';
 
   let { children } = $props();
 
-  onMount(() => {
-    // Basic guest initialization for now
-    // Clerk will override this when we wire it up
-    initUser(undefined, "Guest Hero");
+  onMount(async () => {
+    // Initialize Clerk first
+    await initClerk();
+    // Sync user state (handles both guest and logged in)
+    syncWithClerk();
   });
 </script>
 

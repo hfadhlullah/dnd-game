@@ -6,7 +6,7 @@
   import { goto } from '$app/navigation';
   import { userState } from '$lib/user.svelte';
   import { convex } from '$lib/convex-client';
-  import { api } from '../../../convex/_generated/api';
+  import { api } from '$convex/_generated/api';
 
   let game = $state<GameState>(createNewGame());
   let showDice = $state(false);
