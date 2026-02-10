@@ -26,10 +26,10 @@
 
   <!-- Logo / Title -->
   <div class="relative z-10 mb-12" class:scale-95={isEntering} class:opacity-0={isEntering} style="transition: all 0.5s ease">
-    <div class="text-gold/60 text-sm font-mono uppercase tracking-[0.3em] mb-4">
-      <img src="/icons/1.png" alt="" class="w-4 h-4 object-contain" />
+    <div class="flex justify-center gap-4 text-gold/60 text-sm font-mono uppercase tracking-[0.3em] mb-4">
+      <img src="/icons/8.png" alt="" class="w-6 h-6 object-contain" />
       <span>A Micro-Adventure</span>
-      <img src="/icons/1.png" alt="" class="w-4 h-4 object-contain" />
+      <img src="/icons/8.png" alt="" class="w-6 h-6 object-contain" />
     </div>
     <h1 class="font-display text-5xl md:text-7xl font-bold text-parchment leading-tight mb-2 drop-shadow-lg">
       One-Minute<br />Dungeon
@@ -70,7 +70,7 @@
         <span class="animate-pulse">Entering...</span>
       {:else}
         <div class="flex items-center gap-3">
-          <img src="/icons/1.png" alt="" class="w-8 h-8 object-contain" />
+          <img src="/icons/8.png" alt="" class="w-8 h-8 object-contain transition-transform group-hover:rotate-12" />
           <span>Enter Dungeon</span>
         </div>
       {/if}

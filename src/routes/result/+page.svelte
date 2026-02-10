@@ -71,7 +71,7 @@
     <!-- Outcome Badge -->
     <div class="text-center mb-6">
       {#if outcome === 'WIN'}
-        <img src="/icons/1.png" alt="Victory" class="w-16 h-16 mx-auto object-contain" />
+        <img src="/icons/8.png" alt="Victory" class="w-16 h-16 mx-auto object-contain" />
       {:else}
         <img src="/icons/4.png" alt="Defeat" class="w-16 h-16 mx-auto object-contain grayscale" />
       {/if}
@@ -143,7 +143,7 @@
              active:translate-y-1"
     >
       <div class="flex items-center justify-center gap-2">
-        <img src="/icons/1.png" alt="" class="w-5 h-5 object-contain" />
+        <img src="/icons/8.png" alt="" class="w-5 h-5 object-contain" />
         <span>Play Again</span>
       </div>
     </button>

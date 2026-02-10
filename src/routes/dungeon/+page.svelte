@@ -6,7 +6,7 @@
   import { goto } from '$app/navigation';
   import { userState } from '$lib/user.svelte';
   import { convex } from '$lib/convex-client';
-  import { api } from '$convex/_generated/api';
+  import { api } from '$convex/api';
 
   let game = $state<GameState>(createNewGame());
   let showDice = $state(false);
@@ -66,7 +66,7 @@
         snapshot: game.stats,
         rarity: ending.rarity,
         seed: game.seed,
-        killedBy: ending.killedBy,
+        killedBy: ending.killedBy ?? undefined,
       });
     } catch (e) {
       console.error("Failed to save run:", e);
@@ -104,7 +104,7 @@
   <div class="space-y-3 mb-8">
     <div class="flex items-center justify-between">
       <span class="flex items-center gap-1.5 font-mono text-xs text-parchment/40 uppercase tracking-widest">
-        <img src="/icons/1.png" alt="" class="w-3 h-3 object-contain" /> Node {nodeProgress}
+        <img src="/icons/5.png" alt="" class="w-3 h-3 object-contain" /> Node {nodeProgress}
       </span>
       <span class="font-mono text-xs text-parchment/40">
         Seed: {game.seed}

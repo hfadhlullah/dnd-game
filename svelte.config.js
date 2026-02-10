@@ -1,4 +1,5 @@
 import adapter from '@sveltejs/adapter-auto';
+import path from 'path';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,7 +9,7 @@ const config = {
 		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 		adapter: adapter(),
 		alias: {
-			$convex: 'convex'
+			$convex: path.resolve('./src/lib/backend/_generated')
 		}
 	}
 };

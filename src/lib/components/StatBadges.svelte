@@ -4,7 +4,7 @@
   let { stats }: { stats: PlayerStats } = $props();
 
   const statConfig = [
-    { key: 'str' as const, label: 'STR', icon: '/icons/1.png' },
+    { key: 'str' as const, label: 'STR', icon: '/icons/5.png' },
     { key: 'dex' as const, label: 'DEX', icon: '/icons/2.png' },
     { key: 'int' as const, label: 'INT', icon: '/icons/3.png' },
     { key: 'cha' as const, label: 'CHA', icon: '/icons/36.png' },

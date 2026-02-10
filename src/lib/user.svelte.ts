@@ -1,6 +1,6 @@
 import { convex } from './convex-client';
-import { api } from '$convex/_generated/api';
-import type { Id } from '$convex/_generated/dataModel';
+import { api } from '$convex/api';
+import type { Id } from '$convex/dataModel';
 import { clerk } from './clerk';
 
 export const userState = $state({
@@ -37,7 +37,7 @@ export function syncWithClerk() {
   }
 
   // Watch for changes
-  clerk.addListener((state) => {
+  clerk.addListener((state: any) => {
     userState.clerkUser = state.user;
     if (state.user) {
       initUser(state.user.id, state.user.fullName || state.user.username || "Authenticated Hero");
