@@ -1,0 +1,76 @@
+theme:
+  name: "Budget Medieval"
+  tech: "Tailwind CSS + Svelte"
+  status: "V1.0"
+
+visual_identity:
+  typography:
+    headings:
+      font_family: "Cinzel, UnifrakturMaguntia"
+      tailwind_class: "font-display"
+      fallback: "Serif"
+    body:
+      font_family: "Inter, System UI"
+      tailwind_class: "font-sans"
+      fallback: "Sans-Serif"
+    code:
+      font_family: "Fira Code"
+      tailwind_class: "font-mono"
+      fallback: "Monospace"
+
+  colors:
+    backgrounds:
+      dungeon:
+        token: "bg-dungeon"
+        value: "#1a1a1a"
+        description: "Dark mode default (Dungeon walls)"
+      parchment:
+        token: "bg-parchment"
+        value: "#fdf6e3"
+        description: "Light mode / Card background"
+    text:
+      primary:
+        token: "text-primary"
+        value: "#fdf6e3"
+        description: "Main text color (Dark mode)"
+    accents:
+      gold:
+        token: "accent-gold"
+        value: "#ffd700"
+        description: "Rarity: Legendary / Rewards"
+      blood:
+        token: "accent-blood"
+        value: "#ff4444"
+        description: "Damage / Errors / Death"
+      magic:
+        token: "accent-magic"
+        value: "#bd93f9"
+        description: "Magic / Rare items"
+
+components:
+  action_button:
+    description: "Primary interaction element for choices"
+    classes: "w-full p-4 border-2 border-white rounded-lg active:translate-y-1 transition-transform"
+  stat_badge:
+    description: "Displays generic stats (STR/DEX/INT)"
+    classes: "px-2 py-1 bg-gray-800 rounded text-xs font-mono uppercase tracking-wider"
+  dice_container:
+    description: "Overlay for the 3D dice roll"
+    visual_style:
+      texture: "Ornate metallic borders with intricate relief"
+      colors: "Jewel tones (Emerald, Ruby) with metallic cages"
+      typography: "High-readability Serif numbers"
+    z_index: "z-50"
+
+share_card:
+  dimensions: "1080x1920px"
+  composition:
+    top: "Game Logo (20%)"
+    middle: "The Title (40%)"
+    bottom: "Stats & Death Text (20%)"
+    footer: "URL / QR Code (10%)"
+
+accessibility:
+  contrast: "AA standard on #1a1a1a"
+  motion: "Respect prefers-reduced-motion"
+  touch_target: "> 44px"

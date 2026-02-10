@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* ===== Design System: One-Minute Dungeon ===== */
+
+/* Custom Colors */
+@theme {
+  --color-dungeon: #1a1a1a;
+  --color-parchment: #fdf6e3;
+  --color-gold: #ffd700;
+  --color-blood: #ff4444;
+  --color-magic: #bd93f9;
+  --color-dungeon-light: #2a2a2a;
+  --color-dungeon-border: #3a3a3a;
+
+  /* Rarity Colors */
+  --color-rarity-common: #9ca3af;
+  --color-rarity-rare: #3b82f6;
+  --color-rarity-epic: #a855f7;
+  --color-rarity-legendary: #ffd700;
+
+  /* Font Families */
+  --font-display: 'Cinzel', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
+/* Base Styles */
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-dungeon);
+  color: var(--color-parchment);
+}
+
+body {
+  min-height: 100dvh;
+  margin: 0;
+}

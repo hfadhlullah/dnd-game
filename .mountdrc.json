@@ -1,0 +1,80 @@
+{
+  "agents": [
+    "gemini",
+    "generic"
+  ],
+  "installed": [
+    {
+      "name": "product-brief",
+      "source": "https://github.com/meganopus/pdlc/tree/main/skills/product-brief",
+      "type": "skill",
+      "installedAt": "2026-02-10T14:39:52.329Z"
+    },
+    {
+      "name": "prd-generator",
+      "source": "https://github.com/meganopus/pdlc/tree/main/skills/prd-generator",
+      "type": "skill",
+      "installedAt": "2026-02-10T14:39:52.331Z"
+    },
+    {
+      "name": "fsd-generator",
+      "source": "https://github.com/meganopus/pdlc/tree/main/skills/fsd-generator",
+      "type": "skill",
+      "installedAt": "2026-02-10T14:39:52.334Z"
+    },
+    {
+      "name": "tech-stack",
+      "source": "https://github.com/meganopus/pdlc/tree/main/skills/tech-stack",
+      "type": "skill",
+      "installedAt": "2026-02-10T14:39:52.336Z"
+    },
+    {
+      "name": "design-system",
+      "source": "https://github.com/meganopus/pdlc/tree/main/skills/design-system",
+      "type": "skill",
+      "installedAt": "2026-02-10T14:39:52.338Z"
+    },
+    {
+      "name": "erd-generator",
+      "source": "https://github.com/meganopus/pdlc/tree/main/skills/erd-generator",
+      "type": "skill",
+      "installedAt": "2026-02-10T14:39:52.341Z"
+    },
+    {
+      "name": "story-generator",
+      "source": "https://github.com/meganopus/pdlc/tree/main/skills/story-generator",
+      "type": "skill",
+      "installedAt": "2026-02-10T14:39:52.343Z"
+    },
+    {
+      "name": "project-kickoff-heavy-2.md",
+      "source": "https://github.com/meganopus/pdlc/tree/main/workflows/project-kickoff-heavy-2.md",
+      "type": "workflow",
+      "installedAt": "2026-02-10T14:39:52.344Z"
+    },
+    {
+      "name": "add-feature-heavy.md",
+      "source": "https://github.com/meganopus/pdlc/tree/main/workflows/add-feature-heavy.md",
+      "type": "workflow",
+      "installedAt": "2026-02-10T14:39:52.345Z"
+    },
+    {
+      "name": "start-story.md",
+      "source": "https://github.com/meganopus/pdlc/tree/main/workflows/start-story.md",
+      "type": "workflow",
+      "installedAt": "2026-02-10T14:39:52.346Z"
+    },
+    {
+      "name": "fix-typechecks.md",
+      "source": "https://github.com/meganopus/pdlc/tree/main/workflows/fix-typechecks.md",
+      "type": "workflow",
+      "installedAt": "2026-02-10T14:39:52.348Z"
+    },
+    {
+      "name": "add-feature-light.md",
+      "source": "https://github.com/meganopus/pdlc/tree/main/workflows/add-feature-light.md",
+      "type": "workflow",
+      "installedAt": "2026-02-10T14:39:52.349Z"
+    }
+  ]
+}
