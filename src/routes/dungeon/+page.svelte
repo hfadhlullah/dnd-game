@@ -7,21 +7,32 @@
   import { userState } from '$lib/user.svelte';
   import { convex } from '$lib/convex-client';
   import { api } from '$convex/api';
+  import { soundManager } from '$lib/sound';
 
   let game = $state<GameState>(createNewGame());
   let showDice = $state(false);
-  let pendingRoll = $state<{ value: number; outcome: 'SUCCESS' | 'FAIL' } | null>(null);
+  let pendingRoll = $state<{ value: number; outcome: 'SUCCESS' | 'FAIL'; stat: string } | null>(null);
   let isTransitioning = $state(false);
   let damageFlash = $state(false);
 
+  function ensureAudio() {
+    soundManager.init();
+    soundManager.resume();
+  }
+
   function handleChoice(choiceIndex: 0 | 1) {
     if (game.phase !== 'ENCOUNTER' || isTransitioning) return;
+    ensureAudio();
+    soundManager.playClick();
 
     // Resolve the choice (calculates roll + outcome)
     const result = resolveChoice(game, choiceIndex);
+    const choice = game.currentEncounter!.choices[choiceIndex];
+
     pendingRoll = {
       value: result.lastRoll!,
       outcome: result.lastOutcome!,
+      stat: choice.stat,
     };
     showDice = true;
 
@@ -36,6 +47,17 @@
     showDice = false;
     const result = (window as any).__pendingResult as GameState;
     game = result;
+
+    // Audio Feedback
+    if (game.lastOutcome === 'SUCCESS') {
+      if (pendingRoll?.stat === 'str') {
+        soundManager.playHit(); // Heavy impact for STR success
+      } else {
+        soundManager.playSuccess(); // Chime for other successes
+      }
+    } else if (game.lastOutcome === 'FAIL' && game.lastDamage > 0) {
+      soundManager.playDamage();
+    }
 
     // Flash damage
     if (game.lastOutcome === 'FAIL' && game.lastDamage > 0) {
@@ -75,6 +97,8 @@
 
   function handleContinue() {
     if (game.phase !== 'RESULT') return;
+    ensureAudio();
+    soundManager.playClick();
     isTransitioning = true;
 
     setTimeout(() => {
