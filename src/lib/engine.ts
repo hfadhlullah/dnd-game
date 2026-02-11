@@ -90,11 +90,12 @@ export function rollD20(): number {
   return Math.floor(Math.random() * 20) + 1;
 }
 
-export function resolveChoice(state: GameState, choiceIndex: 0 | 1): GameState {
+export function resolveChoice(state: GameState, choiceIndex: 0 | 1 | 2): GameState {
   const encounter = state.currentEncounter;
   if (!encounter) return state;
 
   const choice = encounter.choices[choiceIndex];
+  if (!choice) return state; // Safety check
   const roll = rollD20();
   const statBonus = state.stats[choice.stat];
   const total = roll + statBonus;

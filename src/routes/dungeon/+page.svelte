@@ -20,7 +20,7 @@
     soundManager.resume();
   }
 
-  function handleChoice(choiceIndex: 0 | 1) {
+  function handleChoice(choiceIndex: 0 | 1 | 2) {
     if (game.phase !== 'ENCOUNTER' || isTransitioning) return;
     ensureAudio();
     soundManager.playClick();
@@ -161,7 +161,7 @@
       <div class="space-y-4">
         {#each game.currentEncounter?.choices ?? [] as choice, i}
           <button
-            onclick={() => handleChoice(i as 0 | 1)}
+            onclick={() => handleChoice(i as 0 | 1 | 2)}
             disabled={game.phase === 'ROLLING'}
             class="w-full p-5 border-2 border-parchment/20 rounded-xl bg-dungeon-light/60
                    text-parchment font-display text-lg font-bold uppercase tracking-wide
@@ -172,7 +172,7 @@
                    text-left"
           >
             <div class="flex items-center gap-3">
-              <span class="text-gold/60 text-sm font-mono">{i === 0 ? 'A' : 'B'}</span>
+              <span class="text-gold/60 text-sm font-mono">{i === 0 ? 'A' : i === 1 ? 'B' : 'C'}</span>
               <span>{choice.text}</span>
             </div>
             <div class="mt-1 ml-7 text-xs font-mono text-parchment/30 normal-case tracking-normal">
