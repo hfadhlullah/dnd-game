@@ -22,6 +22,8 @@ export const create = mutation({
     ),
     seed: v.string(),
     killedBy: v.optional(v.string()),
+    characterName: v.optional(v.string()),
+    characterClass: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     return await ctx.db.insert("runs", {
@@ -34,6 +36,8 @@ export const create = mutation({
       rarity: args.rarity,
       seed: args.seed,
       killedBy: args.killedBy,
+      characterName: args.characterName,
+      characterClass: args.characterClass,
     });
   },
 });
@@ -53,6 +57,8 @@ export const getLeaderboard = query({
         return {
           ...run,
           userName: user?.name ?? "Unknown Hero",
+          characterName: run.characterName ?? null,
+          characterClass: run.characterClass ?? null,
         };
       })
     );

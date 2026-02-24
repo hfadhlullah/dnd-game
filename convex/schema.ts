@@ -24,6 +24,8 @@ export default defineSchema({
     ),
     seed: v.string(),
     killedBy: v.optional(v.string()),
+    characterName: v.optional(v.string()),
+    characterClass: v.optional(v.string()),
     statsSnapshot: v.object({
       str: v.number(),
       dex: v.number(),

@@ -53,12 +53,19 @@
               #{i + 1}
             </div>
             <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 mb-1">
+              <div class="flex items-center gap-2 mb-0.5">
                 <span class="font-display text-lg text-parchment truncate font-bold">{run.userName}</span>
                 <span class="px-1.5 py-0.5 rounded bg-black/40 text-[10px] font-mono uppercase tracking-widest {rarityColors[run.rarity] || 'text-gray-400'} border border-current opacity-60">
                   {run.rarity}
                 </span>
               </div>
+              {#if run.characterName}
+                <div class="flex items-center gap-1.5 mb-1">
+                  <span class="text-gold/70 font-display text-xs font-bold">{run.characterName}</span>
+                  <span class="text-parchment/30 font-mono text-[10px]">·</span>
+                  <span class="text-parchment/40 font-mono text-[10px] uppercase capitalize">{run.characterClass}</span>
+                </div>
+              {/if}
               <div class="font-display text-sm {run.outcome === 'WIN' ? 'text-green-400/80' : 'text-blood/80'} italic truncate">
                 "{run.endingTitle}"
               </div>

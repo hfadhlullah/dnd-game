@@ -7,13 +7,16 @@ export const clerk = typeof window !== 'undefined' && env.PUBLIC_CLERK_PUBLISHAB
   ? new Clerk(env.PUBLIC_CLERK_PUBLISHABLE_KEY) 
   : null;
 
-export let isClerkLoaded = false;
+// Make this reactive for Svelte 5
+export const clerkState = $state({
+  isLoaded: false
+});
 
 export async function initClerk() {
-  if (!clerk || isClerkLoaded) return;
+  if (!clerk || clerkState.isLoaded) return;
   try {
     await clerk.load();
-    isClerkLoaded = true;
+    clerkState.isLoaded = true;
   } catch (e) {
     console.error("Clerk load failed:", e);
   }

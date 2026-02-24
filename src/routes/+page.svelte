@@ -1,15 +1,25 @@
 <script lang="ts">
   import { userState } from '$lib/user.svelte';
-  import { clerk } from '$lib/clerk';
+  import { clerk, clerkState } from '$lib/clerk.svelte';
 
   let isEntering = $state(false);
 
   function enterDungeon() {
     isEntering = true;
-    // Will navigate to /dungeon once logic is wired
     setTimeout(() => {
-      window.location.href = '/dungeon';
-    }, 600);
+      if (!userState.clerkUser) {
+        // Not signed in — go to sign-in and come back to select-character after
+        if (clerk && clerkState.isLoaded) {
+          clerk.redirectToSignIn({
+            redirectUrl: window.location.origin + '/select-character?redirect=/dungeon',
+          });
+        } else {
+          window.location.href = '/sign-in?redirect=' + encodeURIComponent('/select-character?redirect=/dungeon');
+        }
+      } else {
+        window.location.href = '/select-character?redirect=/dungeon';
+      }
+    }, 400);
   }
 </script>
 

@@ -1,7 +1,7 @@
 import { convex } from './convex-client';
 import { api } from '$convex/api';
 import type { Id } from '$convex/dataModel';
-import { clerk } from './clerk';
+import { clerk } from './clerk.svelte';
 
 export const userState = $state({
   userId: null as Id<"users"> | null,

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createNewGame, resolveChoice, advanceToNextNode, generateEnding, type GameState } from '$lib/engine';
+  import { createNewGame, resolveChoice, advanceToNextNode, generateEnding, type GameState, type PlayerStats } from '$lib/engine';
   import DiceRoller from '$lib/components/DiceRoller.svelte';
   import HpBar from '$lib/components/HpBar.svelte';
   import StatBadges from '$lib/components/StatBadges.svelte';
@@ -8,8 +8,19 @@
   import { convex } from '$lib/convex-client';
   import { api } from '$convex/api';
   import { soundManager } from '$lib/sound';
+  import { getActiveCharacter } from '$lib/character-store';
 
-  let game = $state<GameState>(createNewGame());
+  function createGameWithCharacter(): GameState {
+    const base = createNewGame();
+    try {
+      const uid = userState.clerkUser?.id;
+      const char = uid ? getActiveCharacter(uid) : null;
+      if (char) return { ...base, stats: { ...char.stats } };
+    } catch {}
+    return base;
+  }
+
+  let game = $state<GameState>(createGameWithCharacter());
   let showDice = $state(false);
   let pendingRoll = $state<{ value: number; outcome: 'SUCCESS' | 'FAIL'; stat: string } | null>(null);
   let isTransitioning = $state(false);
@@ -77,6 +88,15 @@
 
   async function saveRun(ending: any) {
     if (!userState.userId) return;
+
+    // Read active character for leaderboard attribution
+    let characterName: string | undefined;
+    let characterClass: string | undefined;
+    try {
+      const uid = userState.clerkUser?.id;
+      const char = uid ? getActiveCharacter(uid) : null;
+      if (char) { characterName = char.name; characterClass = char.class; }
+    } catch {}
     
     try {
       await convex.mutation(api.runs.create, {
@@ -89,6 +109,8 @@
         rarity: ending.rarity,
         seed: game.seed,
         killedBy: ending.killedBy ?? undefined,
+        characterName,
+        characterClass,
       });
     } catch (e) {
       console.error("Failed to save run:", e);
@@ -117,6 +139,14 @@
   }
 
   let nodeProgress = $derived(`${game.nodeIndex + 1} / ${game.totalNodes}`);
+
+  // Read active character for display in header
+  let characterInfo = $derived.by(() => {
+    try {
+      const uid = userState.clerkUser?.id;
+      return uid ? getActiveCharacter(uid) : null;
+    } catch { return null; }
+  });
 </script>
 
 <!-- Screen shake on damage -->
@@ -130,9 +160,11 @@
       <span class="flex items-center gap-1.5 font-mono text-xs text-parchment/40 uppercase tracking-widest">
         <img src="/icons/5.png" alt="" class="w-3 h-3 object-contain" /> Node {nodeProgress}
       </span>
-      <span class="font-mono text-xs text-parchment/40">
-        Seed: {game.seed}
-      </span>
+      {#if characterInfo}
+        <span class="font-display text-xs text-gold/50 uppercase tracking-wider">{characterInfo.name} · {characterInfo.class}</span>
+      {:else}
+        <span class="font-mono text-xs text-parchment/40">Seed: {game.seed}</span>
+      {/if}
     </div>
     <HpBar hp={game.hp} maxHp={game.maxHp} />
     <StatBadges stats={game.stats} />

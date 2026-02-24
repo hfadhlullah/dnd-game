@@ -2,7 +2,7 @@
   import '../app.css';
   import { onMount } from 'svelte';
   import { initUser, syncWithClerk } from '$lib/user.svelte';
-  import { initClerk } from '$lib/clerk';
+  import { initClerk } from '$lib/clerk.svelte';
 
   let { children } = $props();
 
